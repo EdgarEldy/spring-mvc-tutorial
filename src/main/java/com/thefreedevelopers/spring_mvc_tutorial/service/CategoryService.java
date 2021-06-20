@@ -15,12 +15,17 @@ public class CategoryService {
     private CategoryRepository repository;
 
     //Get all categories
-    public List<Category> getCategories(){
+    public List<Category> getCategories() {
         return repository.findAll();
     }
-    
+
     //Save a category
-    public void saveCategory(Category category){
+    public void saveCategory(Category category) {
         repository.save(category);
+    }
+
+    //Get a category using id
+    public Category getCategoryById(int id) {
+        return repository.findById((long) id).orElse(null);
     }
 }
