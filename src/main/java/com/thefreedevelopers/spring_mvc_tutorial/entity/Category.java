@@ -15,6 +15,10 @@ public class Category {
         return categoryName;
     }
 
+    //Constructor
+    public Category() {
+    }
+
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
