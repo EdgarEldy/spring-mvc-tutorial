@@ -1,8 +1,13 @@
 package com.thefreedevelopers.spring_mvc_tutorial.controller;
 
+import com.thefreedevelopers.spring_mvc_tutorial.entity.Category;
 import com.thefreedevelopers.spring_mvc_tutorial.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Controller
 public class CategoryController {
@@ -10,5 +15,12 @@ public class CategoryController {
     //Initialize CategoryService
     @Autowired
     private CategoryService service;
+
+    @GetMapping("/categories")
+    public String indexPage(Model model){
+        List<Category> categories = service.getCategories();
+        model.addAttribute("categories",categories);
+        return "categories/index";
+    }
 
 }
