@@ -23,4 +23,10 @@ public class CategoryController {
         return "categories/index";
     }
 
+    @GetMapping("/categories/add")
+    public String addPage(Model model) {
+        Category category = new Category();
+        model.addAttribute("category", category);
+        return "categories/add";
+    }
 }
