@@ -25,8 +25,8 @@ public class CategoryService {
     }
 
     //Get a category using id
-    public Category getCategoryById(int id) {
-        return repository.findById((long) id).orElse(null);
+    public Category getCategoryById(long id) {
+        return repository.findById(id).orElse(null);
     }
 
     //Delete a category
