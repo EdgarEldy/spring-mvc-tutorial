@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -17,9 +19,9 @@ public class CategoryController {
     private CategoryService service;
 
     @GetMapping("/categories")
-    public String indexPage(Model model){
+    public String indexPage(Model model) {
         List<Category> categories = service.getCategories();
-        model.addAttribute("categories",categories);
+        model.addAttribute("categories", categories);
         return "categories/index";
     }
 
@@ -28,5 +30,11 @@ public class CategoryController {
         Category category = new Category();
         model.addAttribute("category", category);
         return "categories/add";
+    }
+
+    @PostMapping("/categories")
+    public String savePage(@ModelAttribute("category") Category category) {
+        service.saveCategory(category);
+        return "redirect:/categories";
     }
 }
