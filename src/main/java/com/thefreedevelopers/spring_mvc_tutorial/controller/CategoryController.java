@@ -41,8 +41,10 @@ public class CategoryController {
 
     @GetMapping("/categories/edit/{id}")
     public String editPage(@PathVariable(value = "id") long id, Model model) {
-    //Get category from CategoryService
+        //Get category from CategoryService
         Category category = service.getCategoryById(id);
+
+        //Set category as a model attribute to pre-populate the view
         model.addAttribute("category", category);
         return "categories/edit";
     }
