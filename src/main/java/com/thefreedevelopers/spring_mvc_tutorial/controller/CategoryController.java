@@ -48,4 +48,10 @@ public class CategoryController {
         model.addAttribute("category", category);
         return "categories/edit";
     }
+
+    @PostMapping("/categories/delete/{id}")
+    public String deletePage(@PathVariable(value = "id") long id) {
+        this.service.deleteCategory(id);
+        return "redirect:/categories";
+    }
 }
