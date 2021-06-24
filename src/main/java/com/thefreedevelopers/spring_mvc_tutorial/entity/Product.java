@@ -39,4 +39,9 @@ public class Product {
     public Long getId() {
         return id;
     }
+
+    //Setting ManyToOne relationship to Category
+    @ManyToOne
+    @JoinColumn(name="categoryId", nullable = false)
+    private Category category;
 }
