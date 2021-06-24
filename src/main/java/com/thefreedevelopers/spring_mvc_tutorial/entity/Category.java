@@ -1,6 +1,7 @@
 package com.thefreedevelopers.spring_mvc_tutorial.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "categories")
@@ -30,4 +31,8 @@ public class Category {
     public Long getId() {
         return id;
     }
+
+    //Setting OneToMany relationship to Product
+    @OneToMany(mappedBy = "category")
+    private Set<Product> products;
 }
