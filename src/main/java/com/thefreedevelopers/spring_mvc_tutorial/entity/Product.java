@@ -1,11 +1,9 @@
 package com.thefreedevelopers.spring_mvc_tutorial.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "products")
 public class Product {
 
     @Id
