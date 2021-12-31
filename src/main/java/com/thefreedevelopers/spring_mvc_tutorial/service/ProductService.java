@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -21,5 +22,18 @@ public class ProductService {
     // Save a new product
     public void saveProduct(Product product) {
         repository.save(product);
+    }
+
+    // Get a product by id
+    public Product getProductById(long id){
+        Optional<Product> productOptional = repository.findById(id);
+        Product product = null;
+        if(productOptional.isPresent()){
+            product = productOptional.get();
+        }
+        else {
+            throw new RuntimeException("Product not found:" +id);
+        }
+        return product;
     }
 }
