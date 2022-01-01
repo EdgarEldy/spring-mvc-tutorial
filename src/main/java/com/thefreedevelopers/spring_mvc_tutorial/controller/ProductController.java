@@ -1,5 +1,6 @@
 package com.thefreedevelopers.spring_mvc_tutorial.controller;
 
+import com.thefreedevelopers.spring_mvc_tutorial.entity.Category;
 import com.thefreedevelopers.spring_mvc_tutorial.entity.Product;
 import com.thefreedevelopers.spring_mvc_tutorial.service.CategoryService;
 import com.thefreedevelopers.spring_mvc_tutorial.service.ProductService;
@@ -27,5 +28,15 @@ public class ProductController {
         List<Product> products = productService.getProducts();
         model.addAttribute("products", products);
         return "products/index";
+    }
+
+    // Get products/add view with categories
+    @GetMapping("products/add")
+    public String addPage(Model model){
+        List<Category> categories = categoryService.getCategories();
+        model.addAttribute("categories", categories);
+        Product product = new Product();
+        model.addAttribute("product", product);
+        return "products/add";
     }
 }
