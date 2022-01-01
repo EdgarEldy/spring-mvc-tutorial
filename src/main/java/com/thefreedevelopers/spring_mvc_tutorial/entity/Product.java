@@ -40,6 +40,14 @@ public class Product {
         return id;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     //Setting ManyToOne relationship to Category
     @ManyToOne
     @JoinColumn(name="categoryId", nullable = false)
