@@ -1,6 +1,7 @@
 package com.thefreedevelopers.spring_mvc_tutorial.controller;
 
 import com.thefreedevelopers.spring_mvc_tutorial.entity.Product;
+import com.thefreedevelopers.spring_mvc_tutorial.service.CategoryService;
 import com.thefreedevelopers.spring_mvc_tutorial.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,10 @@ public class ProductController {
     // Initialize ProductService
     @Autowired
     private ProductService productService;
+
+    // Initialize CategoryService
+    @Autowired
+    private CategoryService categoryService;
 
     // Show products api
     @GetMapping("/products")
