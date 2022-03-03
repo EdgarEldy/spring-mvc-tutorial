@@ -10,7 +10,7 @@
                     <form role="form" th:action="@{/products}" th:object="${product}" method="POST">
                         <div class="form-group">
                             <label for="categories">Select a category :</label>
-                            <select class="form-control">
+                            <select class="form-control" th:field="*{category.id}">
                                 <option value="">Select a category</option>
                                 <option th:each="category: ${categories}" th:value="${category.getId()}"
                                         th:text="${category.getCategoryName()}"></option>
