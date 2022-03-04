@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class ProductController {
 
     // Show products api
     @GetMapping("/products")
-    public String indexPage(Model model){
+    public String indexPage(Model model) {
         List<Product> products = productService.getProducts();
         model.addAttribute("products", products);
         return "products/index";
@@ -34,7 +35,7 @@ public class ProductController {
 
     // Get products/add view with categories
     @GetMapping("products/add")
-    public String addPage(Model model){
+    public String addPage(Model model) {
         List<Category> categories = categoryService.getCategories();
         model.addAttribute("categories", categories);
         Product product = new Product();
@@ -46,5 +47,18 @@ public class ProductController {
     public String savePage(@ModelAttribute("product") Product product) {
         productService.saveProduct(product);
         return "redirect:/products";
+    }
+
+    // Get products/edit/id view
+    @GetMapping("/products/edit/{id}")
+    public String editPage(@PathVariable(value = "id") long id, Model model) {
+        // getting categories
+        List<Category> categories = categoryService.getCategories();
+        model.addAttribute("categories", categories);
+
+        Product product = productService.getProductById(id);
+        model.addAttribute("product", product);
+
+        return "products/edit";
     }
 }
