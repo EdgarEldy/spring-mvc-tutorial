@@ -29,7 +29,7 @@
                         <td th:text="${product.getUnitPrice()}"></td>
                         <td>
                             <div class="card-footer">
-                                <a href="#"
+                                <a th:href="@{products/edit/{id}(id = ${product.getId()})}"
                                    class="btn btn-primary">Edit</a>
                                 <form action="#" method="POST">
                                     <button type="submit"
