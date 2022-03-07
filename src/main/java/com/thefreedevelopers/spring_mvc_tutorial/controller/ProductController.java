@@ -61,4 +61,11 @@ public class ProductController {
 
         return "products/edit";
     }
+
+    // Remove a product
+    @PostMapping("/products/delete/{id}")
+    public String deletePage(@PathVariable(value = "id") long id) {
+        this.productService.deleteProduct(id);
+        return "redirect:/products";
+    }
 }
