@@ -41,4 +41,9 @@ public class CustomerService {
         }
         return customer;
     }
+
+    // Remove a customer
+    public void deleteCustomer(long id) {
+        customerRepository.deleteById(id);
+    }
 }
