@@ -1,5 +1,6 @@
 package com.thefreedevelopers.spring_mvc_tutorial.controller;
 
+import com.thefreedevelopers.spring_mvc_tutorial.entity.Category;
 import com.thefreedevelopers.spring_mvc_tutorial.entity.Customer;
 import com.thefreedevelopers.spring_mvc_tutorial.entity.Product;
 import com.thefreedevelopers.spring_mvc_tutorial.service.CustomerService;
@@ -27,5 +28,13 @@ public class CustomerController {
         List<Customer> customers = customerService.getCustomers();
         model.addAttribute("customers", customers);
         return "customers/index";
+    }
+
+    // Creates a new customer object and return customers/add view
+    @GetMapping("/customers/add")
+    public String addPage(Model model) {
+        Customer customer = new Customer();
+        model.addAttribute("customer", customer);
+        return "customers/add";
     }
 }
