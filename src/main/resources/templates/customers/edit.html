@@ -8,6 +8,8 @@
             <div class="panel-body">
                 <div class="col-md-6">
                     <form role="form" th:action="@{/customers}" th:object="${customer}" method="POST">
+                        <!-- Add hidden form field to handle update -->
+                        <input type="hidden" th:field="*{id}">
                         <div class="form-group">
                             <label>First name :</label>
                             <input type="text" class="form-control" th:field="*{firstName}">
