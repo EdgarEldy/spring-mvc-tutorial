@@ -33,7 +33,7 @@
                         <td th:text="${customer.getAddress()}"></td>
                         <td>
                             <div class="card-footer">
-                                <a href=""
+                                <a th:href="@{customers/edit/{id}(id=${customer.getId()})}"
                                    class="btn btn-primary">Edit</a>
                                 <form action="" method="POST">
                                     <button type="submit"
