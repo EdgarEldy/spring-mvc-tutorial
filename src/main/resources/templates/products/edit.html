@@ -8,6 +8,8 @@
             <div class="panel-body">
                 <div class="col-md-6">
                     <form role="form" th:action="@{/products}" th:object="${product}" method="POST">
+                        <!-- Add hidden form field to handle update -->
+                        <input type="hidden" th:field="*{id}">
                         <div class="form-group">
                             <label for="categories">Select a category :</label>
                             <select class="form-control" th:field="*{category.id}">
