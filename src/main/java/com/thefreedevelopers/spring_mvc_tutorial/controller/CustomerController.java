@@ -48,7 +48,7 @@ public class CustomerController {
         return "redirect:/customers";
     }
 
-    // Get customers/edit/id 
+    // Get customers/edit/id
     @GetMapping("/customers/edit/{id}")
     public String editPage(@PathVariable(value = "id") long id, Model model) {
         //Get customer
@@ -57,5 +57,12 @@ public class CustomerController {
         //Set customers as a model attribute to pre-populate the view
         model.addAttribute("customer", customer);
         return "customers/edit";
+    }
+
+    // Remove a customer
+    @PostMapping("/customers/delete/{id}")
+    public String deletePage(@PathVariable(value = "id") long id) {
+        this.customerService.deleteCustomer(id);
+        return "redirect:/customers";
     }
 }
