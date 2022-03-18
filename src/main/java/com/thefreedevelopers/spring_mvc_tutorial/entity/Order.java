@@ -56,6 +56,18 @@ public class Order {
         this.qty = qty;
     }
 
+    // Add total attribute
+    @Column(name = "total")
+    private Double total;
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
     // Constructor
     public Order(){
 
