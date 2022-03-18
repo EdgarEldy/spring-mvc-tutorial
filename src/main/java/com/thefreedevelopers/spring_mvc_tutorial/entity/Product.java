@@ -1,6 +1,8 @@
 package com.thefreedevelopers.spring_mvc_tutorial.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -52,4 +54,16 @@ public class Product {
     @ManyToOne
     @JoinColumn(name="categoryId", nullable = false)
     private Category category;
+
+    // Add OneToMany relationship to Order
+    @OneToMany(mappedBy = "product", orphanRemoval = true)
+    private List<Order> orders = new ArrayList<>();
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 }
