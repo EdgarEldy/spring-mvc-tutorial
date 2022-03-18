@@ -44,6 +44,18 @@ public class Order {
         this.id = id;
     }
 
+    // Add qty attribute
+    @Column(name = "qty")
+    private Integer qty;
+
+    public Integer getQty() {
+        return qty;
+    }
+
+    public void setQty(Integer qty) {
+        this.qty = qty;
+    }
+
     // Constructor
     public Order(){
 
