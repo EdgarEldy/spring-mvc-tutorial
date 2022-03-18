@@ -17,4 +17,9 @@ public class Order {
     public void setId(Long id) {
         this.id = id;
     }
+
+    // Constructor
+    public Order(){
+
+    }
 }
