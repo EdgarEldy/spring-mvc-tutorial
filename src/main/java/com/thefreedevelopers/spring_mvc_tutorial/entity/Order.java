@@ -23,6 +23,19 @@ public class Order {
         this.customer = customer;
     }
 
+    // Setting ManyToOne relationship to Product
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = true)
+    private Product product;
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
     public Long getId() {
         return id;
     }
