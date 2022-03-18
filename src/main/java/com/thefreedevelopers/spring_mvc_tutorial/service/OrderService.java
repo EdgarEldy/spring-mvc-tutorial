@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -32,5 +33,18 @@ public class OrderService {
     // Save a new order
     public void saveOrder(Order order) {
         orderRepository.save(order);
+    }
+
+    // Get an order by id
+    public Order getOrderById(long id){
+        Optional<Order> orderOptional = orderRepository.findById(id);
+        Order order = null;
+        if(orderOptional.isPresent()){
+            order = orderOptional.get();
+        }
+        else {
+            throw new RuntimeException("Order not found:" +id);
+        }
+        return order;
     }
 }
