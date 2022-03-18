@@ -10,6 +10,19 @@ public class Order {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    // Setting ManyToOne relationship to Customer
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = true)
+    private Customer customer;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     public Long getId() {
         return id;
     }
