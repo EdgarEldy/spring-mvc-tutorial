@@ -47,4 +47,9 @@ public class OrderService {
         }
         return order;
     }
+
+    // Delete an order
+    public void deleteOrder(long id){
+        orderRepository.deleteById(id);
+    }
 }
