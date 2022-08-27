@@ -18,8 +18,11 @@
                         </div>
                         <div class="form-group">
                             <label for="categories">Select a category</label>
-                            <select name="" id="" class="form-control">
-                                <option value=""></option>
+                            <select id="category_id" class="form-control" th:field="*{category.id}">
+                                <option value="">Select a category</option>
+                                <option th:each="category: ${categories}" th:value="${category.getId()}"
+                                        th:text="${category.getCategoryName()
+                                }"></option>
                             </select>
                         </div>
                         <div class="form-group">
