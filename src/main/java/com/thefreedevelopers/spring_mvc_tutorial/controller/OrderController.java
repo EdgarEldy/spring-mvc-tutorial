@@ -1,5 +1,6 @@
 package com.thefreedevelopers.spring_mvc_tutorial.controller;
 
+import com.thefreedevelopers.spring_mvc_tutorial.entity.Category;
 import com.thefreedevelopers.spring_mvc_tutorial.entity.Customer;
 import com.thefreedevelopers.spring_mvc_tutorial.entity.Order;
 import com.thefreedevelopers.spring_mvc_tutorial.service.CategoryService;
@@ -43,12 +44,21 @@ public class OrderController {
     // Get orders/add view
     @GetMapping("/orders/add")
     public String addPage(Model model) {
+
         //Get customers
         List<Customer> customers = customerService.getCustomers();
         model.addAttribute("customers", customers);
+
+        // Get categories
+        List<Category> categories = categoryService.getCategories();
+        model.addAttribute("categories", categories);
+
         // Create a new order object
         Order order = new Order();
         model.addAttribute("order", order);
+
         return "orders/add";
     }
+
+
 }
