@@ -2,6 +2,7 @@ package com.thefreedevelopers.spring_mvc_tutorial.controller;
 
 import com.thefreedevelopers.spring_mvc_tutorial.entity.Customer;
 import com.thefreedevelopers.spring_mvc_tutorial.entity.Order;
+import com.thefreedevelopers.spring_mvc_tutorial.service.CategoryService;
 import com.thefreedevelopers.spring_mvc_tutorial.service.CustomerService;
 import com.thefreedevelopers.spring_mvc_tutorial.service.OrderService;
 import com.thefreedevelopers.spring_mvc_tutorial.service.ProductService;
@@ -26,6 +27,10 @@ public class OrderController {
     // Initialize ProductService
     @Autowired
     private ProductService productService;
+
+    // initialize CategoryService
+    @Autowired
+    private CategoryService categoryService;
 
     // Show orders with customer and product
     @GetMapping("/orders")
