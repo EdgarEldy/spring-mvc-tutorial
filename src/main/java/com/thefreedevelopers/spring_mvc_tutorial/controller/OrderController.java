@@ -1,5 +1,6 @@
 package com.thefreedevelopers.spring_mvc_tutorial.controller;
 
+import com.thefreedevelopers.spring_mvc_tutorial.entity.Customer;
 import com.thefreedevelopers.spring_mvc_tutorial.entity.Order;
 import com.thefreedevelopers.spring_mvc_tutorial.service.CustomerService;
 import com.thefreedevelopers.spring_mvc_tutorial.service.OrderService;
@@ -32,5 +33,17 @@ public class OrderController {
         List<Order> orders = orderService.getOrders();
         model.addAttribute("orders", orders);
         return "orders/index";
+    }
+
+    // Get orders/add view
+    @GetMapping("/orders/add")
+    public String addPage(Model model) {
+        //Get customers
+        List<Customer> customers = customerService.getCustomers();
+        model.addAttribute("customers", customers);
+        // Create a new order object
+        Order order = new Order();
+        model.addAttribute("order", order);
+        return "orders/add";
     }
 }
