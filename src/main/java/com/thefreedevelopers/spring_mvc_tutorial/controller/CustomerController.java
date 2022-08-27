@@ -1,8 +1,6 @@
 package com.thefreedevelopers.spring_mvc_tutorial.controller;
 
-import com.thefreedevelopers.spring_mvc_tutorial.entity.Category;
 import com.thefreedevelopers.spring_mvc_tutorial.entity.Customer;
-import com.thefreedevelopers.spring_mvc_tutorial.entity.Product;
 import com.thefreedevelopers.spring_mvc_tutorial.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
