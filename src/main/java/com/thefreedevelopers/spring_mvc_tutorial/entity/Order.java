@@ -56,6 +56,14 @@ public class Order {
         this.id = id;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     public Integer getQty() {
         return qty;
     }
