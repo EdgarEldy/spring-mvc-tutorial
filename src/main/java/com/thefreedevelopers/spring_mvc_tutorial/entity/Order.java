@@ -14,6 +14,21 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = true)
     private Customer customer;
+    // Setting ManyToOne relationship to Product
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = true)
+    private Product product;
+    // Add qty attribute
+    @Column(name = "qty")
+    private Integer qty;
+    // Add total attribute
+    @Column(name = "total")
+    private Double total;
+
+    // Constructor
+    public Order(){
+
+    }
 
     public Customer getCustomer() {
         return customer;
@@ -22,11 +37,6 @@ public class Order {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-
-    // Setting ManyToOne relationship to Product
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = true)
-    private Product product;
 
     public Product getProduct() {
         return product;
@@ -44,10 +54,6 @@ public class Order {
         this.id = id;
     }
 
-    // Add qty attribute
-    @Column(name = "qty")
-    private Integer qty;
-
     public Integer getQty() {
         return qty;
     }
@@ -56,20 +62,11 @@ public class Order {
         this.qty = qty;
     }
 
-    // Add total attribute
-    @Column(name = "total")
-    private Double total;
-
     public Double getTotal() {
         return total;
     }
 
     public void setTotal(Double total) {
         this.total = total;
-    }
-
-    // Constructor
-    public Order(){
-
     }
 }
