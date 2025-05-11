@@ -48,6 +48,11 @@ public class Order {
         this.product = product;
     }
 
+    // Add ManyToOne relationship to Product entity
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
+
     public Long getId() {
         return id;
     }
@@ -62,6 +67,14 @@ public class Order {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public Integer getQty() {
