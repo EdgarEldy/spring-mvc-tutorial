@@ -9,30 +9,28 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    public String getCategoryName() {
-        return categoryName;
-    }
+    private String categoryName;
+    //Setting OneToMany relationship to Product
+    @OneToMany(mappedBy = "category")
+    private Set<Product> products;
 
     //Constructor
     public Category() {
+    }
+
+    public String getCategoryName() {
+        return categoryName;
     }
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
 
-    private String categoryName;
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
     }
 
-    //Setting OneToMany relationship to Product
-    @OneToMany(mappedBy = "category")
-    private Set<Product> products;
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
