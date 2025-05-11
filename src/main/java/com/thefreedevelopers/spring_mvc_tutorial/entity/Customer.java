@@ -9,6 +9,15 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+    // Properties
+    private String firstName;
+    private String lastName;
+    private String Tel;
+    private String Email;
+    private String Address;
+    // Constructor
+    public Customer() {
+    }
 
     public Long getId() {
         return id;
@@ -17,17 +26,6 @@ public class Customer {
     public void setId(Long id) {
         this.id = id;
     }
-
-    // Constructor
-    public Customer() {
-    }
-
-    // Properties
-    private String firstName;
-    private String lastName;
-    private String Tel;
-    private String Email;
-    private String Address;
 
     public String getFirstName() {
         return firstName;
