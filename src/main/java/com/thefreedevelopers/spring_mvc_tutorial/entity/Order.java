@@ -9,6 +9,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+    private Integer qty;
+    private Double total;
 
     // Setting ManyToOne relationship to Customer
     @ManyToOne
