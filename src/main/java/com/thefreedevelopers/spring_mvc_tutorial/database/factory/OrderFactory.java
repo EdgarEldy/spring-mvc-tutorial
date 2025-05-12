@@ -5,6 +5,10 @@ import com.thefreedevelopers.spring_mvc_tutorial.entity.Customer;
 import com.thefreedevelopers.spring_mvc_tutorial.entity.Order;
 import com.thefreedevelopers.spring_mvc_tutorial.entity.Product;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 /**
  * Factory class for generating fake order data using Java Faker
  * <p>
@@ -26,15 +30,37 @@ public class OrderFactory {
      * @return a Order instance with dummy data
      */
     public static Order create(Customer customer, Product product) {
-        int quantity = faker.number().numberBetween(1, 100);
+        int qty = faker.number().numberBetween(1, 100);
         double unitPrice = Double.parseDouble(faker.commerce().price());
-        double total = quantity * unitPrice;
+        double total = qty * unitPrice;
 
         return new Order(
-                quantity,
+                qty,
                 total,
                 customer,
                 product
         );
+    }
+
+    /**
+     * Generates a list of orders with random customers and products
+     *
+     * @param count     the number of orders to create
+     * @param customers the list of existing customers to randomly assign to orders
+     * @param products  the list of existing products to randomly assign to orders
+     * @return a list of Order instances
+     */
+    public static List<Order> createOrders(int count, List<Customer> customers, List<Product> products) {
+        Random random = new Random();
+        List<Order> orders = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            // Pick a random customer and product
+            Customer randomCustomer = customers.get(random.nextInt(customers.size()));
+            Product randomProduct = products.get(random.nextInt(products.size()));
+
+            // Create a product with the selected customer and product and add to the list
+            orders.add(create(randomCustomer, randomProduct));
+        }
+        return orders;
     }
 }
