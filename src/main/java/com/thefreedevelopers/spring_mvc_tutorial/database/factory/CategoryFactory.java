@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Factory class for generating fake category data for testing
+ * Factory class for generating fake category data using Java Faker
+ *
  * Created by EdgarEldy on 5/12/2025
  * Author : EdgarEldy
  * Date : 5/12/2025
