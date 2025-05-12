@@ -23,7 +23,7 @@ public class CategoryFactory {
     }
 
     // Create fake categories based on count parameter: e.g, 10 categories
-    public List<Category> createCategories(int count) {
+    public static List<Category> createCategories(int count) {
         List<Category> categories = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             categories.add(create());
