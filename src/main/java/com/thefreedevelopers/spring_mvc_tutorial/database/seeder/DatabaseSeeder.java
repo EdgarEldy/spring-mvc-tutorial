@@ -5,8 +5,9 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 /**
- * Component class for generating seeders
- *
+ * Main seeder class that triggers individual seeders during application startup
+ * This class is executed only when the Spring Boot application starts (if active profile is 'dev')
+ * <p>
  * Created by EdgarEldy on 5/12/2025
  * Author : EdgarEldy
  * Date : 5/12/2025

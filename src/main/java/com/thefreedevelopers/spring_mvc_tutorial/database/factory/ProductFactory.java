@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Factory class for generating fake product data for testing
- * <p>
+ * Factory class for generating fake product data using Java Faker
+ *
  * Created by EdgarEldy on 5/12/2025
  * Author : EdgarEldy
  * Date : 5/12/2025
