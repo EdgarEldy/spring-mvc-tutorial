@@ -22,8 +22,7 @@ public class Order {
     }
 
     // Constructor with initial values
-    public Order(Long id, Integer qty, Double total, Customer customer, Product product) {
-        this.id = id;
+    public Order(Integer qty, Double total, Customer customer, Product product) {
         this.qty = qty;
         this.total = total;
         this.customer = customer;
