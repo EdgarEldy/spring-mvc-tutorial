@@ -23,9 +23,9 @@ public class Customer {
     public Customer(String firstName, String lastName, String tel, String email, String address) {
         this.firstName = firstName;
         this.lastName = lastName;
-        Tel = tel;
-        Email = email;
-        Address = address;
+        this.Tel = tel;
+        this.Email = email;
+        this.Address = address;
     }
 
     public Long getId() {
