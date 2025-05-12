@@ -34,7 +34,7 @@ public class CustomerSeeder {
     // Seed customers
     public void seed() {
         // Only seed if there is no existing customers
-        if (customerRepository.count() > 0) {
+        if (customerRepository.count() == 0) {
             // Generate a list of 10 customers
             List<Customer> customers = CustomerFactory.createCustomers(10);
 
