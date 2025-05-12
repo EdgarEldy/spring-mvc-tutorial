@@ -3,6 +3,9 @@ package com.thefreedevelopers.spring_mvc_tutorial.database.factory;
 import com.github.javafaker.Faker;
 import com.thefreedevelopers.spring_mvc_tutorial.entity.Customer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Factory class for generating fake customer data using Java Faker
  * <p>
@@ -29,5 +32,20 @@ public class CustomerFactory {
                 faker.internet().emailAddress(),
                 faker.address().fullAddress()
         );
+    }
+
+    /**
+     * Generates a list of customers with random customer data
+     *
+     * @param count the number of customers to create
+     * @return a list of Customer instances
+     */
+    public static List<Customer> createCustomers(int count) {
+        List<Customer> customers = new ArrayList<Customer>();
+        for (int i = 0; i < count; i++) {
+            customers.add(create());
+        }
+
+        return customers;
     }
 }
