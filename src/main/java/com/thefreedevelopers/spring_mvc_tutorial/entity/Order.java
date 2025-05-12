@@ -48,6 +48,19 @@ public class Order {
         this.product = product;
     }
 
+    // Empty constructor
+    public Order() {
+    }
+
+    // Constructor with initial values
+    public Order(Long id, Integer qty, Double total, Customer customer, Product product) {
+        this.id = id;
+        this.qty = qty;
+        this.total = total;
+        this.customer = customer;
+        this.product = product;
+    }
+
     // Add ManyToOne relationship to Product entity
     @ManyToOne(optional = false)
     @JoinColumn(name = "product_id", nullable = false)
