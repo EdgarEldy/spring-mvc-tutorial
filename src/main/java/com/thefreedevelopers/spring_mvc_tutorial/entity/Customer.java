@@ -15,6 +15,19 @@ public class Customer {
     private String Email;
     private String Address;
 
+    // Empty constructor
+    public Customer() {
+    }
+
+    // Constructor with initial values
+    public Customer(String firstName, String lastName, String tel, String email, String address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        Tel = tel;
+        Email = email;
+        Address = address;
+    }
+
     public Long getId() {
         return id;
     }
