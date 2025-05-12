@@ -19,10 +19,12 @@ import org.springframework.stereotype.Component;
 public class DatabaseSeeder implements CommandLineRunner {
     private final CategorySeeder categorySeeder;
     private final ProductSeeder productSeeder;
+    private final CustomerSeeder customerSeeder;
 
-    public DatabaseSeeder(CategorySeeder categorySeeder, ProductSeeder productSeeder) {
+    public DatabaseSeeder(CategorySeeder categorySeeder, ProductSeeder productSeeder, CustomerSeeder customerSeeder) {
         this.categorySeeder = categorySeeder;
         this.productSeeder = productSeeder;
+        this.customerSeeder = customerSeeder;
     }
 
     @Override
@@ -31,5 +33,8 @@ public class DatabaseSeeder implements CommandLineRunner {
 
         // Seed products with random categories
         productSeeder.seed();
+
+        // Seed customers
+        customerSeeder.seed();
     }
 }
