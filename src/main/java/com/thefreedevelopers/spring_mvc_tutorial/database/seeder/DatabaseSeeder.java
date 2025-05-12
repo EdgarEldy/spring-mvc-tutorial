@@ -17,13 +17,18 @@ import org.springframework.stereotype.Component;
 @Profile("dev")
 public class DatabaseSeeder implements CommandLineRunner {
     private final CategorySeeder categorySeeder;
+    private final ProductSeeder productSeeder;
 
-    public DatabaseSeeder(CategorySeeder categorySeeder) {
+    public DatabaseSeeder(CategorySeeder categorySeeder, ProductSeeder productSeeder) {
         this.categorySeeder = categorySeeder;
+        this.productSeeder = productSeeder;
     }
 
     @Override
     public void run(String... args) throws Exception {
         categorySeeder.seed();
+
+        // Seed products with random categories
+        productSeeder.seed();
     }
 }
