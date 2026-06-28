@@ -1,4 +1,4 @@
-package com.thefreedevelopers.spring_mvc_tutorial.database.seeder;
+package com.edgareldy.spring_mvc_tutorial.database.seeder;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;

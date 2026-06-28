@@ -1,8 +1,8 @@
-package com.thefreedevelopers.spring_mvc_tutorial.database.seeder;
+package com.edgareldy.spring_mvc_tutorial.database.seeder;
 
-import com.thefreedevelopers.spring_mvc_tutorial.database.factory.CategoryFactory;
-import com.thefreedevelopers.spring_mvc_tutorial.entity.Category;
-import com.thefreedevelopers.spring_mvc_tutorial.repository.CategoryRepository;
+import com.edgareldy.spring_mvc_tutorial.database.factory.CategoryFactory;
+import com.edgareldy.spring_mvc_tutorial.entity.Category;
+import com.edgareldy.spring_mvc_tutorial.repository.CategoryRepository;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 

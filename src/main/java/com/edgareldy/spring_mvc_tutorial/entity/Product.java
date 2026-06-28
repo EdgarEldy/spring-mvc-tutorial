@@ -1,4 +1,4 @@
-package com.thefreedevelopers.spring_mvc_tutorial.entity;
+package com.edgareldy.spring_mvc_tutorial.entity;
 
 import javax.persistence.*;
 
@@ -16,8 +16,14 @@ public class Product {
     @JoinColumn(name="categoryId", nullable = false)
     private Category category;
 
-    //Constructor
+    //Constructors
     public Product() {
+    }
+
+    public Product(String productName, double unitPrice, Category category) {
+        this.productName = productName;
+        this.unitPrice = (float) unitPrice;
+        this.category = category;
     }
 
     public String getProductName() {
