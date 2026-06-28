@@ -159,9 +159,24 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- spring-boot-starter-test: JUnit 5, Mockito, AssertJ, MockMvc, @SpringBootTest -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- H2: in-memory database for tests, avoids requiring a real MySQL instance -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Spring Security Test: SecurityMockMvcConfigurers, @WithMockUser, @WithUserDetails -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
