@@ -13,13 +13,30 @@ public class Product {
     private Long id;
     private String productName;
     private float unitPrice;
-    //Setting ManyToOne relationship to Category
+
     @ManyToOne
-    @JoinColumn(name="categoryId", nullable = false)
+    @JoinColumn(name = "categoryId", nullable = false)
     private Category category;
 
-    //Constructor
+    @OneToMany(mappedBy = "product", orphanRemoval = true)
+    private List<Order> orders = new ArrayList<>();
+
+    // Constructors
     public Product() {
+    }
+
+    public Product(String productName, double unitPrice, Category category) {
+        this.productName = productName;
+        this.unitPrice = (float) unitPrice;
+        this.category = category;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getProductName() {
@@ -38,14 +55,6 @@ public class Product {
         this.unitPrice = unitPrice;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Category getCategory() {
         return category;
     }
@@ -53,15 +62,6 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
-
-    //Setting ManyToOne relationship to Category
-    @ManyToOne
-    @JoinColumn(name="categoryId", nullable = false)
-    private Category category;
-
-    // Add OneToMany relationship to Order
-    @OneToMany(mappedBy = "product", orphanRemoval = true)
-    private List<Order> orders = new ArrayList<>();
 
     public List<Order> getOrders() {
         return orders;

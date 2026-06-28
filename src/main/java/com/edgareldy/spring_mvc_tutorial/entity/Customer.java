@@ -21,9 +21,6 @@ public class Customer {
     public Customer() {
     }
 
-    // Empty constructor
-    public Customer() {
-    }
 
     // Constructor with initial values
     public Customer(String firstName, String lastName, String tel, String email, String address) {

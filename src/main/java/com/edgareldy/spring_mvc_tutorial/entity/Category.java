@@ -14,8 +14,12 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private Set<Product> products;
 
-    //Constructor
+    //Constructors
     public Category() {
+    }
+
+    public Category(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getCategoryName() {
