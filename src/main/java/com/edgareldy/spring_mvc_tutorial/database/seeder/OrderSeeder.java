@@ -1,12 +1,12 @@
-package com.thefreedevelopers.spring_mvc_tutorial.database.seeder;
+package com.edgareldy.spring_mvc_tutorial.database.seeder;
 
-import com.thefreedevelopers.spring_mvc_tutorial.database.factory.OrderFactory;
-import com.thefreedevelopers.spring_mvc_tutorial.entity.Customer;
-import com.thefreedevelopers.spring_mvc_tutorial.entity.Order;
-import com.thefreedevelopers.spring_mvc_tutorial.entity.Product;
-import com.thefreedevelopers.spring_mvc_tutorial.repository.CustomerRepository;
-import com.thefreedevelopers.spring_mvc_tutorial.repository.OrderRepository;
-import com.thefreedevelopers.spring_mvc_tutorial.repository.ProductRepository;
+import com.edgareldy.spring_mvc_tutorial.database.factory.OrderFactory;
+import com.edgareldy.spring_mvc_tutorial.entity.Customer;
+import com.edgareldy.spring_mvc_tutorial.entity.Order;
+import com.edgareldy.spring_mvc_tutorial.entity.Product;
+import com.edgareldy.spring_mvc_tutorial.repository.CustomerRepository;
+import com.edgareldy.spring_mvc_tutorial.repository.OrderRepository;
+import com.edgareldy.spring_mvc_tutorial.repository.ProductRepository;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 

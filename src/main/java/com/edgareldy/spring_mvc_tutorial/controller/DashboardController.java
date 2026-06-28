@@ -1,4 +1,4 @@
-package com.thefreedevelopers.spring_mvc_tutorial.controller;
+package com.edgareldy.spring_mvc_tutorial.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

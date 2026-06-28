@@ -1,7 +1,7 @@
-package com.thefreedevelopers.spring_mvc_tutorial.database.factory;
+package com.edgareldy.spring_mvc_tutorial.database.factory;
 
 import com.github.javafaker.Faker;
-import com.thefreedevelopers.spring_mvc_tutorial.entity.Customer;
+import com.edgareldy.spring_mvc_tutorial.entity.Customer;
 
 import java.util.ArrayList;
 import java.util.List;

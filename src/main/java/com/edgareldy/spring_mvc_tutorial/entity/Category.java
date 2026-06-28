@@ -1,4 +1,4 @@
-package com.thefreedevelopers.spring_mvc_tutorial.entity;
+package com.edgareldy.spring_mvc_tutorial.entity;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -14,8 +14,12 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private Set<Product> products;
 
-    //Constructor
+    //Constructors
     public Category() {
+    }
+
+    public Category(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getCategoryName() {

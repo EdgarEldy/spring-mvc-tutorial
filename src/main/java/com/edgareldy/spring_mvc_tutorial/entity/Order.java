@@ -1,4 +1,4 @@
-package com.thefreedevelopers.spring_mvc_tutorial.entity;
+package com.edgareldy.spring_mvc_tutorial.entity;
 
 import javax.persistence.*;
 

@@ -1,7 +1,7 @@
-package com.thefreedevelopers.spring_mvc_tutorial.controller;
+package com.edgareldy.spring_mvc_tutorial.controller;
 
-import com.thefreedevelopers.spring_mvc_tutorial.entity.Category;
-import com.thefreedevelopers.spring_mvc_tutorial.service.CategoryService;
+import com.edgareldy.spring_mvc_tutorial.entity.Category;
+import com.edgareldy.spring_mvc_tutorial.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

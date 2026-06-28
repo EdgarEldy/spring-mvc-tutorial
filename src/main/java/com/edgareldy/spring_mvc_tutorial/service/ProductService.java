@@ -1,7 +1,7 @@
-package com.thefreedevelopers.spring_mvc_tutorial.service;
+package com.edgareldy.spring_mvc_tutorial.service;
 
-import com.thefreedevelopers.spring_mvc_tutorial.entity.Product;
-import com.thefreedevelopers.spring_mvc_tutorial.repository.ProductRepository;
+import com.edgareldy.spring_mvc_tutorial.entity.Product;
+import com.edgareldy.spring_mvc_tutorial.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
