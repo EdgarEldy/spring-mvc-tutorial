@@ -1,0 +1,60 @@
+package com.edgareldy.spring_mvc_tutorial.entity;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "products")
+public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String productName;
+    private float unitPrice;
+    //Setting ManyToOne relationship to Category
+    @ManyToOne
+    @JoinColumn(name="categoryId", nullable = false)
+    private Category category;
+
+    //Constructors
+    public Product() {
+    }
+
+    public Product(String productName, double unitPrice, Category category) {
+        this.productName = productName;
+        this.unitPrice = (float) unitPrice;
+        this.category = category;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public float getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(float unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+}
