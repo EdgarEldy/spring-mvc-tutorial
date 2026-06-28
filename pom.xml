@@ -20,6 +20,9 @@
         <tomcat.version>9.0.102</tomcat.version>
         <logback.version>1.2.13</logback.version>
         <jackson.version>2.14.3</jackson.version>
+        <modelmapper.version>3.2.1</modelmapper.version>
+        <javafaker.version>1.0.2</javafaker.version>
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
     </properties>
 
     <!-- BOM import: dependency versions managed independently from a parent POM -->
@@ -135,7 +138,7 @@
         <dependency>
             <groupId>org.modelmapper</groupId>
             <artifactId>modelmapper</artifactId>
-            <version>3.2.1</version>
+            <version>${modelmapper.version}</version>
         </dependency>
 
         <!-- Spring Mail: send emails via JavaMailSender -->
@@ -148,7 +151,7 @@
         <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
-            <version>1.0.2</version>
+            <version>${javafaker.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.yaml</groupId>
@@ -173,7 +176,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
