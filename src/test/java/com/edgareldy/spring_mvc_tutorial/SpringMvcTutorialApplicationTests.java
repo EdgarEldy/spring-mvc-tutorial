@@ -1,4 +1,4 @@
-package com.thefreedevelopers.spring_mvc_tutorial;
+package com.edgareldy.spring_mvc_tutorial;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
