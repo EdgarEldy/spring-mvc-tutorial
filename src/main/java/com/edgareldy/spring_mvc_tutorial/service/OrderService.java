@@ -1,55 +1,18 @@
 package com.edgareldy.spring_mvc_tutorial.service;
 
-import com.edgareldy.spring_mvc_tutorial.entity.Order;
-import com.edgareldy.spring_mvc_tutorial.repository.CustomerRepository;
-import com.edgareldy.spring_mvc_tutorial.repository.OrderRepository;
-import com.edgareldy.spring_mvc_tutorial.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.edgareldy.spring_mvc_tutorial.dto.OrderDto;
 
 import java.util.List;
-import java.util.Optional;
 
-@Service
-public class OrderService {
+public interface OrderService {
 
-    // Initialize CustomerRepository
-    @Autowired
-    private CustomerRepository customerRepository;
+    List<OrderDto> getOrders();
 
-    // Initialize ProductRepository
-    @Autowired
-    private ProductRepository productRepository;
+    OrderDto getOrderById(Long id);
 
-    // Initialize OrderRepository
-    @Autowired
-    private OrderRepository orderRepository;
+    void saveOrder(OrderDto dto);
 
-    // Get all orders
-    public List<Order> getOrders() {
-        return orderRepository.findAll();
-    }
+    void updateOrder(Long id, OrderDto dto);
 
-    // Save a new order
-    public void saveOrder(Order order) {
-        orderRepository.save(order);
-    }
-
-    // Get an order by id
-    public Order getOrderById(long id){
-        Optional<Order> orderOptional = orderRepository.findById(id);
-        Order order = null;
-        if(orderOptional.isPresent()){
-            order = orderOptional.get();
-        }
-        else {
-            throw new RuntimeException("Order not found:" +id);
-        }
-        return order;
-    }
-
-    // Delete an order
-    public void deleteOrder(long id){
-        orderRepository.deleteById(id);
-    }
+    void deleteOrder(Long id);
 }

@@ -6,8 +6,8 @@
         <div class="panel panel-default">
             <div class="panel-heading">Orders List</div>
             <div class="panel-body">
-                <a th:href="@{orders/add}"
-                   class="btn btn-primary">New</a>
+                <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
+                <a th:href="@{/orders/add}" class="btn btn-primary">New</a>
                 <table data-toggle="table" data-url="" data-show-refresh="true" data-show-toggle="true"
                        data-show-columns="true" data-search="true" data-select-item-name="toolbar1"
                        data-pagination="true"
@@ -15,8 +15,8 @@
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Customer name</th>
-                        <th>Product name</th>
+                        <th>Customer</th>
+                        <th>Product</th>
                         <th>Quantity</th>
                         <th>Unit Price</th>
                         <th>Total</th>
@@ -26,16 +26,16 @@
                     <tbody>
                     <tr th:each="order: ${orders}">
                         <td th:text="${order.id}"></td>
-                        <td th:text="${order.customer.getFirstName()} + ' ' + ${order.customer.getLastName()}"></td>
-                        <td th:text="${order.product.getProductName()}"></td>
-                        <td th:text="${order.getQty()}"></td>
-                        <td th:text="${order.product.getUnitPrice()}"></td>
-                        <td th:text="${order.getTotal()}"></td>
+                        <td th:text="${order.customerName}"></td>
+                        <td th:text="${order.productName}"></td>
+                        <td th:text="${order.qty}"></td>
+                        <td th:text="${order.unitPrice}"></td>
+                        <td th:text="${order.total}"></td>
                         <td>
                             <div class="card-footer">
-                                <a href="#"
+                                <a th:href="@{/orders/edit/{id}(id=${order.id})}"
                                    class="btn btn-primary">Edit</a>
-                                <form action="#" method="POST">
+                                <form th:action="@{/orders/delete/{id}(id=${order.id})}" method="POST">
                                     <button type="submit"
                                             onclick="return confirm('Are you sure you want to delete this order ?')"
                                             class="btn btn-danger btn-sm">Delete

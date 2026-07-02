@@ -4,10 +4,11 @@
 <div layout:fragment="content">
     <div class="col-lg-12">
         <div class="panel panel-default">
-            <div class="panel-heading">Add a new order</div>
+            <div class="panel-heading">Update an order</div>
             <div class="panel-body">
                 <div class="col-md-6">
-                    <form role="form" th:action="@{/orders}" th:object="${order}" method="POST">
+                    <form role="form" th:action="@{/orders/edit/{id}(id=${order.id})}" th:object="${order}" method="POST">
+                        <input type="hidden" th:field="*{id}">
                         <div class="form-group" th:classappend="${#fields.hasErrors('customerId')} ? 'has-error'">
                             <label>Customer</label>
                             <select class="form-control" th:field="*{customerId}">

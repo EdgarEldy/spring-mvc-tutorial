@@ -34,12 +34,12 @@ public class OrderFactory {
         double unitPrice = Double.parseDouble(faker.commerce().price());
         double total = qty * unitPrice;
 
-        return new Order(
-                qty,
-                total,
-                customer,
-                product
-        );
+        return Order.builder()
+                .qty(qty)
+                .total(total)
+                .customer(customer)
+                .product(product)
+                .build();
     }
 
     /**
