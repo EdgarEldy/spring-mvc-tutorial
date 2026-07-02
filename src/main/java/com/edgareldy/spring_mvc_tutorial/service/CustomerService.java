@@ -1,48 +1,18 @@
 package com.edgareldy.spring_mvc_tutorial.service;
 
-import com.edgareldy.spring_mvc_tutorial.entity.Customer;
-import com.edgareldy.spring_mvc_tutorial.repository.CustomerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.edgareldy.spring_mvc_tutorial.dto.CustomerDto;
 
 import java.util.List;
-import java.util.Optional;
 
-@Service
-public class CustomerService {
+public interface CustomerService {
 
-    // Constructor
-    public CustomerService() {
-    }
+    List<CustomerDto> getCustomers();
 
-    // Initialize CustomerRepository
-    @Autowired
-    private CustomerRepository customerRepository;
+    CustomerDto getCustomerById(Long id);
 
-    // Getting all customers
-    public List<Customer> getCustomers() {
-        return customerRepository.findAll();
-    }
+    void saveCustomer(CustomerDto dto);
 
-    // Save a customer
-    public void saveCustomer(Customer customer) {
-        customerRepository.save(customer);
-    }
+    void updateCustomer(Long id, CustomerDto dto);
 
-    //Get a customer using id
-    public Customer getCustomerById(long id) {
-        Optional<Customer> customerOptional = customerRepository.findById(id);
-        Customer customer = null;
-        if (customerOptional.isPresent()) {
-            customer = customerOptional.get();
-        } else {
-            throw new RuntimeException("Customer not found:" + id);
-        }
-        return customer;
-    }
-
-    // Remove a customer
-    public void deleteCustomer(long id) {
-        customerRepository.deleteById(id);
-    }
+    void deleteCustomer(Long id);
 }
