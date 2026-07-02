@@ -1,7 +1,20 @@
 package com.edgareldy.spring_mvc_tutorial.entity;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "products")
 public class Product {
@@ -9,52 +22,19 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Product name is required")
+    @Size(min = 2, max = 200, message = "Product name must be between 2 and 200 characters")
+    @Column(name = "product_name", nullable = false, length = 200)
     private String productName;
+
+    @Positive(message = "Unit price must be greater than 0")
+    @Column(name = "unit_price", nullable = false)
     private float unitPrice;
-    //Setting ManyToOne relationship to Category
-    @ManyToOne
-    @JoinColumn(name="categoryId", nullable = false)
+
+    @NotNull(message = "Category is required")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
-
-    //Constructors
-    public Product() {
-    }
-
-    public Product(String productName, double unitPrice, Category category) {
-        this.productName = productName;
-        this.unitPrice = (float) unitPrice;
-        this.category = category;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public float getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(float unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 }
+
