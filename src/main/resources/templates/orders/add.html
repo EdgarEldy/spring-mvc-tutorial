@@ -8,30 +8,35 @@
             <div class="panel-body">
                 <div class="col-md-6">
                     <form role="form" th:action="@{/orders}" th:object="${order}" method="POST">
-                        <div class="form-group">
-                            <label for="customers">Select a customer :</label>
-                            <select class="form-control" th:field="*{customer.id}">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('customerId')} ? 'has-error'">
+                            <label>Customer</label>
+                            <select class="form-control" th:field="*{customerId}">
                                 <option value="">Select a customer</option>
-                                <option th:each="customer: ${customers}" th:value="${customer.getId()}"
-                                        th:text="${customer.getFirstName() + ' ' + customer.getLastName()}"></option>
+                                <option th:each="customer: ${customers}"
+                                        th:value="${customer.id}"
+                                        th:text="${customer.firstName + ' ' + customer.lastName}"></option>
                             </select>
+                            <span class="help-block" th:if="${#fields.hasErrors('customerId')}" th:errors="*{customerId}"></span>
                         </div>
-                        <div class="form-group">
-                            <label for="categories">Select a category</label>
-                            <select id="category_id" class="form-control" th:field="*{category.id}">
-                                <option value="">Select a category</option>
-                                <option th:each="category: ${categories}" th:value="${category.getId()}"
-                                        th:text="${category.getCategoryName()
-                                }"></option>
+                        <div class="form-group" th:classappend="${#fields.hasErrors('productId')} ? 'has-error'">
+                            <label>Product</label>
+                            <select class="form-control" th:field="*{productId}">
+                                <option value="">Select a product</option>
+                                <option th:each="product: ${products}"
+                                        th:value="${product.id}"
+                                        th:text="${product.productName}"></option>
                             </select>
+                            <span class="help-block" th:if="${#fields.hasErrors('productId')}" th:errors="*{productId}"></span>
                         </div>
-                        <div class="form-group">
-                            <label for="">Quantity</label>
-                            <input type="text" class="form-control" th:field="*{qty}">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('qty')} ? 'has-error'">
+                            <label>Quantity</label>
+                            <input type="number" min="1" class="form-control" th:field="*{qty}">
+                            <span class="help-block" th:if="${#fields.hasErrors('qty')}" th:errors="*{qty}"></span>
                         </div>
-                        <div class="form-group">
-                            <label for="">Total</label>
-                            <input type="text" class="form-control" th:field="*{total}">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('total')} ? 'has-error'">
+                            <label>Total</label>
+                            <input type="number" step="0.01" class="form-control" th:field="*{total}">
+                            <span class="help-block" th:if="${#fields.hasErrors('total')}" th:errors="*{total}"></span>
                         </div>
                         <button type="submit" id="submit" class="btn btn-primary">Save</button>
                         <button type="reset" class="btn btn-default">Reset</button>
