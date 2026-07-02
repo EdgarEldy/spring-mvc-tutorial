@@ -7,10 +7,12 @@
             <div class="panel-heading">Add a product category</div>
             <div class="panel-body">
                 <div class="col-md-6">
+                    <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
                     <form role="form" th:action="@{/categories}" th:object="${category}" method="POST">
-                        <div class="form-group">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('categoryName')} ? 'has-error'">
                             <label>Category name :</label>
                             <input type="text" class="form-control" th:field="*{categoryName}">
+                            <span class="help-block" th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}"></span>
                         </div>
                         <button type="submit" id="submit" class="btn btn-primary">Save</button>
                         <button type="reset" class="btn btn-default">Reset</button>
