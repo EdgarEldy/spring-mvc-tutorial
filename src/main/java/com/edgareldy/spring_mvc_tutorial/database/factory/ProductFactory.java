@@ -27,11 +27,11 @@ public class ProductFactory {
      * @return a Product instance with dummy data
      */
     public static Product create(Category category) {
-        return new Product(
-                faker.commerce().productName(),
-                Double.parseDouble(faker.commerce().price()),
-                category
-        );
+        return Product.builder()
+                .productName(faker.commerce().productName())
+                .unitPrice(Float.parseFloat(faker.commerce().price().replace(",", ".")))
+                .category(category)
+                .build();
     }
 
     /**

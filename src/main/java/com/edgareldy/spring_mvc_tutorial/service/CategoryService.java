@@ -1,45 +1,19 @@
 package com.edgareldy.spring_mvc_tutorial.service;
 
-import com.edgareldy.spring_mvc_tutorial.entity.Category;
-import com.edgareldy.spring_mvc_tutorial.repository.CategoryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.edgareldy.spring_mvc_tutorial.dto.CategoryDto;
 
 import java.util.List;
-import java.util.Optional;
 
-@Service
-public class CategoryService {
+public interface CategoryService {
 
-    @Autowired
-    //Initialize CategoryRepository
-    private CategoryRepository repository;
+    List<CategoryDto> getCategories();
 
-    //Get all categories
-    public List<Category> getCategories() {
-        return repository.findAll();
-    }
+    CategoryDto getCategoryById(Long id);
 
-    //Save a category
-    public void saveCategory(Category category) {
-        repository.save(category);
-    }
+    void saveCategory(CategoryDto dto);
 
-    //Get a category using id
-    public Category getCategoryById(long id) {
-        Optional<Category> categoryOptional = repository.findById(id);
-        Category category = null;
-        if (categoryOptional.isPresent()){
-            category = categoryOptional.get();
-        }
-        else {
-            throw new RuntimeException("Category not found:" + id);
-        }
-        return category;
-    }
+    void updateCategory(Long id, CategoryDto dto);
 
-    //Delete a category
-    public void deleteCategory(Long id){
-        repository.deleteById(id);
-    }
+    void deleteCategory(Long id);
 }
+

@@ -1,44 +1,19 @@
 package com.edgareldy.spring_mvc_tutorial.service;
 
-import com.edgareldy.spring_mvc_tutorial.entity.Product;
-import com.edgareldy.spring_mvc_tutorial.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.edgareldy.spring_mvc_tutorial.dto.ProductDto;
 
 import java.util.List;
-import java.util.Optional;
 
-@Service
-public class ProductService {
-    @Autowired
-    //Initialize ProductRepository
-    private ProductRepository repository;
+public interface ProductService {
 
-    // Get all products
-    public List<Product> getProducts() {
-        return repository.findAll();
-    }
+    List<ProductDto> getProducts();
 
-    // Save a new product
-    public void saveProduct(Product product) {
-        repository.save(product);
-    }
+    ProductDto getProductById(Long id);
 
-    // Get a product by id
-    public Product getProductById(long id){
-        Optional<Product> productOptional = repository.findById(id);
-        Product product = null;
-        if(productOptional.isPresent()){
-            product = productOptional.get();
-        }
-        else {
-            throw new RuntimeException("Product not found:" +id);
-        }
-        return product;
-    }
+    void saveProduct(ProductDto dto);
 
-    // Delete a product
-    public void deleteProduct(long id){
-        repository.deleteById(id);
-    }
+    void updateProduct(Long id, ProductDto dto);
+
+    void deleteProduct(Long id);
 }
+

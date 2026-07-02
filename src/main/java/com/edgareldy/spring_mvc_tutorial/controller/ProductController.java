@@ -1,71 +1,86 @@
 package com.edgareldy.spring_mvc_tutorial.controller;
 
-import com.edgareldy.spring_mvc_tutorial.entity.Category;
-import com.edgareldy.spring_mvc_tutorial.entity.Product;
+import com.edgareldy.spring_mvc_tutorial.dto.CategoryDto;
+import com.edgareldy.spring_mvc_tutorial.dto.ProductDto;
 import com.edgareldy.spring_mvc_tutorial.service.CategoryService;
 import com.edgareldy.spring_mvc_tutorial.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 
+@Slf4j
 @Controller
+@RequestMapping("/products")
+@RequiredArgsConstructor
 public class ProductController {
 
-    // Initialize ProductService
-    @Autowired
-    private ProductService productService;
+    private final ProductService productService;
+    private final CategoryService categoryService;
 
-    // Initialize CategoryService
-    @Autowired
-    private CategoryService categoryService;
-
-    // Show products api
-    @GetMapping("/products")
+    @GetMapping
     public String indexPage(Model model) {
-        List<Product> products = productService.getProducts();
+        List<ProductDto> products = productService.getProducts();
         model.addAttribute("products", products);
         return "products/index";
     }
 
-    // Get products/add view with categories
-    @GetMapping("products/add")
+    @GetMapping("/add")
     public String addPage(Model model) {
-        List<Category> categories = categoryService.getCategories();
+        List<CategoryDto> categories = categoryService.getCategories();
         model.addAttribute("categories", categories);
-        Product product = new Product();
-        model.addAttribute("product", product);
+        model.addAttribute("product", new ProductDto());
         return "products/add";
     }
 
-    @PostMapping("/products")
-    public String savePage(@ModelAttribute("product") Product product) {
-        productService.saveProduct(product);
+    @PostMapping
+    public String save(@Valid @ModelAttribute("product") ProductDto dto,
+                       BindingResult result,
+                       Model model,
+                       RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
+            model.addAttribute("categories", categoryService.getCategories());
+            return "products/add";
+        }
+        productService.saveProduct(dto);
+        redirectAttributes.addFlashAttribute("successMessage", "Product saved successfully.");
         return "redirect:/products";
     }
 
-    // Get products/edit/id view
-    @GetMapping("/products/edit/{id}")
-    public String editPage(@PathVariable(value = "id") long id, Model model) {
-        // getting categories
-        List<Category> categories = categoryService.getCategories();
+    @GetMapping("/edit/{id}")
+    public String editPage(@PathVariable Long id, Model model) {
+        List<CategoryDto> categories = categoryService.getCategories();
         model.addAttribute("categories", categories);
-
-        Product product = productService.getProductById(id);
-        model.addAttribute("product", product);
-
+        model.addAttribute("product", productService.getProductById(id));
         return "products/edit";
     }
 
-    // Remove a product
-    @PostMapping("/products/delete/{id}")
-    public String deletePage(@PathVariable(value = "id") long id) {
-        this.productService.deleteProduct(id);
+    @PostMapping("/edit/{id}")
+    public String update(@PathVariable Long id,
+                         @Valid @ModelAttribute("product") ProductDto dto,
+                         BindingResult result,
+                         Model model,
+                         RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
+            model.addAttribute("categories", categoryService.getCategories());
+            return "products/edit";
+        }
+        productService.updateProduct(id, dto);
+        redirectAttributes.addFlashAttribute("successMessage", "Product updated successfully.");
+        return "redirect:/products";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        productService.deleteProduct(id);
+        redirectAttributes.addFlashAttribute("successMessage", "Product deleted successfully.");
         return "redirect:/products";
     }
 }
+
