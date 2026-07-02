@@ -8,21 +8,24 @@
             <div class="panel-body">
                 <div class="col-md-6">
                     <form role="form" th:action="@{/products}" th:object="${product}" method="POST">
-                        <div class="form-group">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('categoryId')} ? 'has-error'">
                             <label for="categories">Select a category :</label>
-                            <select class="form-control" th:field="*{category.id}">
+                            <select class="form-control" th:field="*{categoryId}">
                                 <option value="">Select a category</option>
-                                <option th:each="category: ${categories}" th:value="${category.getId()}"
-                                        th:text="${category.getCategoryName()}"></option>
+                                <option th:each="category: ${categories}" th:value="${category.id}"
+                                        th:text="${category.categoryName}"></option>
                             </select>
+                            <span class="help-block" th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}"></span>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('productName')} ? 'has-error'">
                             <label>Product name :</label>
                             <input type="text" class="form-control" th:field="*{productName}">
+                            <span class="help-block" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></span>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('unitPrice')} ? 'has-error'">
                             <label>Unit price :</label>
-                            <input type="text" class="form-control" th:field="*{unitPrice}">
+                            <input type="number" step="0.01" class="form-control" th:field="*{unitPrice}">
+                            <span class="help-block" th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}"></span>
                         </div>
                         <button type="submit" id="submit" class="btn btn-primary">Save</button>
                         <button type="reset" class="btn btn-default">Reset</button>
