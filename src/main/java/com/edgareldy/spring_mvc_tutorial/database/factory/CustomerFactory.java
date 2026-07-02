@@ -25,13 +25,13 @@ public class CustomerFactory {
      * @return a customer instance with dummy data
      */
     public static Customer create() {
-        return new Customer(
-                faker.name().firstName(),
-                faker.name().lastName(),
-                faker.phoneNumber().phoneNumber(),
-                faker.internet().emailAddress(),
-                faker.address().fullAddress()
-        );
+        return Customer.builder()
+                .firstName(faker.name().firstName())
+                .lastName(faker.name().lastName())
+                .tel(faker.phoneNumber().phoneNumber().substring(0, Math.min(20, faker.phoneNumber().phoneNumber().length())))
+                .email(faker.internet().emailAddress())
+                .address(faker.address().fullAddress())
+                .build();
     }
 
     /**
@@ -49,3 +49,4 @@ public class CustomerFactory {
         return customers;
     }
 }
+
