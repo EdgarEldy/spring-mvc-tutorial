@@ -7,12 +7,12 @@
             <div class="panel-heading">Update a product category</div>
             <div class="panel-body">
                 <div class="col-md-6">
-                    <form role="form" th:action="@{/categories}" th:object="${category}" method="POST">
-                        <!-- Add hidden form field to handle update -->
+                    <form role="form" th:action="@{/categories/edit/{id}(id=${category.id})}" th:object="${category}" method="POST">
                         <input type="hidden" th:field="*{id}">
-                        <div class="form-group">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('categoryName')} ? 'has-error'">
                             <label>Category name :</label>
                             <input type="text" class="form-control" th:field="*{categoryName}">
+                            <span class="help-block" th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}"></span>
                         </div>
                         <button type="submit" id="submit" class="btn btn-primary">Save</button>
                         <button type="reset" class="btn btn-default">Reset</button>

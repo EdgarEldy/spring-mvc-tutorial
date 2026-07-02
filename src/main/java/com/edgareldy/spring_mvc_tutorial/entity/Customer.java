@@ -9,13 +9,13 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    // Properties
     private String firstName;
     private String lastName;
     private String Tel;
     private String Email;
     private String Address;
-    // Constructor
+
+    // Empty constructor
     public Customer() {
     }
 

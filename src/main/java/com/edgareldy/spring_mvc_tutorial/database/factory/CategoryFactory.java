@@ -20,7 +20,9 @@ public class CategoryFactory {
 
     // Create fake category names
     public static Category create() {
-        return new Category(faker.commerce().department()); // e.g., "Electronics", "Books", "Toys"
+        return Category.builder()
+                .categoryName(faker.commerce().department())
+                .build();
     }
 
     // Create fake categories based on count parameter: e.g, 10 categories
