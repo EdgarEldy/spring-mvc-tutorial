@@ -52,7 +52,7 @@ class ProductControllerTest {
 
     @Test
     @DisplayName("GET /products - returns index view with product list")
-    void getProducts_returnsIndexView() throws Exception {
+    void _01_ShouldReturnIndexView_WhenProductsAreListed() throws Exception {
         when(productService.getProducts()).thenReturn(Arrays.asList(productDto()));
 
         mockMvc.perform(get("/products"))
@@ -63,7 +63,7 @@ class ProductControllerTest {
 
     @Test
     @DisplayName("GET /products/add - returns add view with categories and empty DTO")
-    void getAddPage_returnsAddView() throws Exception {
+    void _02_ShouldReturnAddViewWithCategories_WhenAddPageIsRequested() throws Exception {
         when(categoryService.getCategories()).thenReturn(Arrays.asList(categoryDto()));
 
         mockMvc.perform(get("/products/add"))
@@ -74,7 +74,7 @@ class ProductControllerTest {
 
     @Test
     @DisplayName("POST /products - valid DTO saves and redirects")
-    void postSave_validDto_redirects() throws Exception {
+    void _03_ShouldRedirect_WhenProductDtoIsValid() throws Exception {
         mockMvc.perform(post("/products")
                         .param("productName", "Laptop")
                         .param("unitPrice", "999.99")
@@ -88,7 +88,7 @@ class ProductControllerTest {
 
     @Test
     @DisplayName("POST /products - blank name returns add view with errors")
-    void postSave_blankName_returnsAddViewWithErrors() throws Exception {
+    void _04_ShouldReturnAddViewWithErrors_WhenProductNameIsBlank() throws Exception {
         when(categoryService.getCategories()).thenReturn(Arrays.asList(categoryDto()));
 
         mockMvc.perform(post("/products")
@@ -104,7 +104,7 @@ class ProductControllerTest {
 
     @Test
     @DisplayName("POST /products - negative price returns add view with errors")
-    void postSave_negativePrice_returnsAddViewWithErrors() throws Exception {
+    void _05_ShouldReturnAddViewWithErrors_WhenUnitPriceIsNegative() throws Exception {
         when(categoryService.getCategories()).thenReturn(Arrays.asList(categoryDto()));
 
         mockMvc.perform(post("/products")
@@ -120,7 +120,7 @@ class ProductControllerTest {
 
     @Test
     @DisplayName("GET /products/edit/{id} - returns edit view with populated DTO")
-    void getEditPage_returnsEditView() throws Exception {
+    void _06_ShouldReturnEditView_WhenProductExists() throws Exception {
         when(productService.getProductById(1L)).thenReturn(productDto());
         when(categoryService.getCategories()).thenReturn(Arrays.asList(categoryDto()));
 
@@ -132,7 +132,7 @@ class ProductControllerTest {
 
     @Test
     @DisplayName("GET /products/edit/{id} - not found forwards to 404")
-    void getEditPage_notFound_returns404() throws Exception {
+    void _07_ShouldReturn404_WhenProductToEditIsNotFound() throws Exception {
         when(productService.getProductById(99L)).thenThrow(new ResourceNotFoundException("Product", 99L));
 
         mockMvc.perform(get("/products/edit/99"))
@@ -142,7 +142,7 @@ class ProductControllerTest {
 
     @Test
     @DisplayName("POST /products/edit/{id} - valid DTO updates and redirects")
-    void postUpdate_validDto_redirects() throws Exception {
+    void _08_ShouldRedirect_WhenUpdatedProductDtoIsValid() throws Exception {
         mockMvc.perform(post("/products/edit/1")
                         .param("productName", "Updated Laptop")
                         .param("unitPrice", "1299.99")
@@ -155,7 +155,7 @@ class ProductControllerTest {
 
     @Test
     @DisplayName("POST /products/delete/{id} - deletes and redirects")
-    void postDelete_redirects() throws Exception {
+    void _09_ShouldRedirect_WhenProductIsDeleted() throws Exception {
         mockMvc.perform(post("/products/delete/1"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/products"))

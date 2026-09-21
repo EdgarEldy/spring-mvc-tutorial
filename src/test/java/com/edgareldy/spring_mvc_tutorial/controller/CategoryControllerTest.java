@@ -30,7 +30,7 @@ class CategoryControllerTest {
 
     @Test
     @DisplayName("GET /categories - returns index view with category list")
-    void getCategories_returnsIndexView() throws Exception {
+    void _01_ShouldReturnIndexView_WhenCategoriesAreListed() throws Exception {
         CategoryDto dto = new CategoryDto();
         dto.setId(1L);
         dto.setCategoryName("Electronics");
@@ -44,7 +44,7 @@ class CategoryControllerTest {
 
     @Test
     @DisplayName("GET /categories/add - returns add view with empty DTO")
-    void getAddPage_returnsAddView() throws Exception {
+    void _02_ShouldReturnAddView_WhenAddPageIsRequested() throws Exception {
         mockMvc.perform(get("/categories/add"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("categories/add"))
@@ -53,7 +53,7 @@ class CategoryControllerTest {
 
     @Test
     @DisplayName("POST /categories - valid DTO saves and redirects")
-    void postSave_validDto_redirects() throws Exception {
+    void _03_ShouldRedirect_WhenCategoryDtoIsValid() throws Exception {
         mockMvc.perform(post("/categories")
                         .param("categoryName", "Electronics"))
                 .andExpect(status().is3xxRedirection())
@@ -65,7 +65,7 @@ class CategoryControllerTest {
 
     @Test
     @DisplayName("POST /categories - blank name returns add view with errors")
-    void postSave_blankName_returnsAddViewWithErrors() throws Exception {
+    void _04_ShouldReturnAddViewWithErrors_WhenCategoryNameIsBlank() throws Exception {
         mockMvc.perform(post("/categories")
                         .param("categoryName", ""))
                 .andExpect(status().isOk())
@@ -77,7 +77,7 @@ class CategoryControllerTest {
 
     @Test
     @DisplayName("GET /categories/edit/{id} - returns edit view with populated DTO")
-    void getEditPage_returnsEditView() throws Exception {
+    void _05_ShouldReturnEditView_WhenCategoryExists() throws Exception {
         CategoryDto dto = new CategoryDto();
         dto.setId(1L);
         dto.setCategoryName("Electronics");
@@ -91,7 +91,7 @@ class CategoryControllerTest {
 
     @Test
     @DisplayName("GET /categories/edit/{id} - not found forwards to 404")
-    void getEditPage_notFound_returns404() throws Exception {
+    void _06_ShouldReturn404_WhenCategoryToEditIsNotFound() throws Exception {
         when(service.getCategoryById(99L)).thenThrow(new ResourceNotFoundException("Category", 99L));
 
         mockMvc.perform(get("/categories/edit/99"))
@@ -101,7 +101,7 @@ class CategoryControllerTest {
 
     @Test
     @DisplayName("POST /categories/edit/{id} - valid DTO updates and redirects")
-    void postUpdate_validDto_redirects() throws Exception {
+    void _07_ShouldRedirect_WhenUpdatedCategoryDtoIsValid() throws Exception {
         mockMvc.perform(post("/categories/edit/1")
                         .param("categoryName", "Updated Name"))
                 .andExpect(status().is3xxRedirection())
@@ -112,7 +112,7 @@ class CategoryControllerTest {
 
     @Test
     @DisplayName("POST /categories/delete/{id} - deletes and redirects")
-    void postDelete_redirects() throws Exception {
+    void _08_ShouldRedirect_WhenCategoryIsDeleted() throws Exception {
         mockMvc.perform(post("/categories/delete/1"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/categories"))
