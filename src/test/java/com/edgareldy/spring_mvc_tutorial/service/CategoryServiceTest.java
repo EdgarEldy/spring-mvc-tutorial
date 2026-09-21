@@ -46,7 +46,7 @@ class CategoryServiceTest {
 
     @Test
     @DisplayName("getCategories - returns list of DTOs")
-    void getCategories_returnsDtoList() {
+    void _01_ShouldReturnDtoList_WhenCategoriesAreRequested() {
         when(repository.findAll()).thenReturn(Arrays.asList(category));
         when(mapper.toDto(category)).thenReturn(categoryDto);
 
@@ -59,7 +59,7 @@ class CategoryServiceTest {
 
     @Test
     @DisplayName("getCategoryById - existing id returns DTO")
-    void getCategoryById_existingId_returnsDto() {
+    void _02_ShouldReturnDto_WhenCategoryIdExists() {
         when(repository.findById(1L)).thenReturn(Optional.of(category));
         when(mapper.toDto(category)).thenReturn(categoryDto);
 
@@ -70,7 +70,7 @@ class CategoryServiceTest {
 
     @Test
     @DisplayName("getCategoryById - non-existing id throws ResourceNotFoundException")
-    void getCategoryById_notFound_throwsException() {
+    void _03_ShouldThrowResourceNotFound_WhenCategoryIdDoesNotExist() {
         when(repository.findById(99L)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> service.getCategoryById(99L))
@@ -80,7 +80,7 @@ class CategoryServiceTest {
 
     @Test
     @DisplayName("saveCategory - maps DTO and saves entity")
-    void saveCategory_savesEntity() {
+    void _04_ShouldSaveEntity_WhenCategoryDtoIsMapped() {
         when(mapper.toEntity(categoryDto)).thenReturn(category);
 
         service.saveCategory(categoryDto);
@@ -91,7 +91,7 @@ class CategoryServiceTest {
 
     @Test
     @DisplayName("updateCategory - existing id updates entity")
-    void updateCategory_existingId_updatesEntity() {
+    void _05_ShouldUpdateEntity_WhenCategoryIdExists() {
         when(repository.findById(1L)).thenReturn(Optional.of(category));
 
         service.updateCategory(1L, categoryDto);
@@ -102,7 +102,7 @@ class CategoryServiceTest {
 
     @Test
     @DisplayName("updateCategory - non-existing id throws ResourceNotFoundException")
-    void updateCategory_notFound_throwsException() {
+    void _06_ShouldThrowResourceNotFound_WhenUpdatedCategoryIdDoesNotExist() {
         when(repository.findById(99L)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> service.updateCategory(99L, categoryDto))
@@ -111,7 +111,7 @@ class CategoryServiceTest {
 
     @Test
     @DisplayName("deleteCategory - existing id deletes entity")
-    void deleteCategory_existingId_deletes() {
+    void _07_ShouldDeleteEntity_WhenCategoryIdExists() {
         when(repository.existsById(1L)).thenReturn(true);
 
         service.deleteCategory(1L);
@@ -121,7 +121,7 @@ class CategoryServiceTest {
 
     @Test
     @DisplayName("deleteCategory - non-existing id throws ResourceNotFoundException")
-    void deleteCategory_notFound_throwsException() {
+    void _08_ShouldThrowResourceNotFound_WhenDeletedCategoryIdDoesNotExist() {
         when(repository.existsById(99L)).thenReturn(false);
 
         assertThatThrownBy(() -> service.deleteCategory(99L))

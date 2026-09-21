@@ -56,7 +56,7 @@ class ProductServiceTest {
 
     @Test
     @DisplayName("getProducts - returns list of DTOs")
-    void getProducts_returnsDtoList() {
+    void _01_ShouldReturnDtoList_WhenProductsAreRequested() {
         when(repository.findAll()).thenReturn(Arrays.asList(product));
         when(mapper.toDto(product)).thenReturn(productDto);
 
@@ -68,7 +68,7 @@ class ProductServiceTest {
 
     @Test
     @DisplayName("getProductById - existing id returns DTO")
-    void getProductById_existingId_returnsDto() {
+    void _02_ShouldReturnDto_WhenProductIdExists() {
         when(repository.findById(1L)).thenReturn(Optional.of(product));
         when(mapper.toDto(product)).thenReturn(productDto);
 
@@ -79,7 +79,7 @@ class ProductServiceTest {
 
     @Test
     @DisplayName("getProductById - non-existing id throws ResourceNotFoundException")
-    void getProductById_notFound_throwsException() {
+    void _03_ShouldThrowResourceNotFound_WhenProductIdDoesNotExist() {
         when(repository.findById(99L)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> service.getProductById(99L))
@@ -89,7 +89,7 @@ class ProductServiceTest {
 
     @Test
     @DisplayName("saveProduct - resolves category and saves entity")
-    void saveProduct_savesEntity() {
+    void _04_ShouldSaveEntity_WhenCategoryIsResolved() {
         when(categoryRepository.findById(1L)).thenReturn(Optional.of(category));
         when(mapper.toEntity(productDto)).thenReturn(product);
 
@@ -101,7 +101,7 @@ class ProductServiceTest {
 
     @Test
     @DisplayName("saveProduct - non-existing category throws ResourceNotFoundException")
-    void saveProduct_categoryNotFound_throwsException() {
+    void _05_ShouldThrowResourceNotFound_WhenCategoryDoesNotExist() {
         when(categoryRepository.findById(1L)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> service.saveProduct(productDto))
@@ -111,7 +111,7 @@ class ProductServiceTest {
 
     @Test
     @DisplayName("updateProduct - existing id updates entity")
-    void updateProduct_existingId_updatesEntity() {
+    void _06_ShouldUpdateEntity_WhenProductIdExists() {
         when(repository.findById(1L)).thenReturn(Optional.of(product));
         when(categoryRepository.findById(1L)).thenReturn(Optional.of(category));
 
@@ -123,7 +123,7 @@ class ProductServiceTest {
 
     @Test
     @DisplayName("updateProduct - non-existing id throws ResourceNotFoundException")
-    void updateProduct_notFound_throwsException() {
+    void _07_ShouldThrowResourceNotFound_WhenUpdatedProductIdDoesNotExist() {
         when(repository.findById(99L)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> service.updateProduct(99L, productDto))
@@ -132,7 +132,7 @@ class ProductServiceTest {
 
     @Test
     @DisplayName("deleteProduct - existing id deletes entity")
-    void deleteProduct_existingId_deletes() {
+    void _08_ShouldDeleteEntity_WhenProductIdExists() {
         when(repository.existsById(1L)).thenReturn(true);
 
         service.deleteProduct(1L);
@@ -142,7 +142,7 @@ class ProductServiceTest {
 
     @Test
     @DisplayName("deleteProduct - non-existing id throws ResourceNotFoundException")
-    void deleteProduct_notFound_throwsException() {
+    void _09_ShouldThrowResourceNotFound_WhenDeletedProductIdDoesNotExist() {
         when(repository.existsById(99L)).thenReturn(false);
 
         assertThatThrownBy(() -> service.deleteProduct(99L))
