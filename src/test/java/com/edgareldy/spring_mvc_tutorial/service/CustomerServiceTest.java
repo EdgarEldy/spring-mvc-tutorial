@@ -53,7 +53,7 @@ class CustomerServiceTest {
 
     @Test
     @DisplayName("getCustomers - returns list of DTOs")
-    void getCustomers_returnsDtoList() {
+    void _01_ShouldReturnDtoList_WhenCustomersAreRequested() {
         when(repository.findAll()).thenReturn(Arrays.asList(customer));
         when(mapper.toDto(customer)).thenReturn(customerDto);
 
@@ -65,7 +65,7 @@ class CustomerServiceTest {
 
     @Test
     @DisplayName("getCustomerById - existing id returns DTO")
-    void getCustomerById_existingId_returnsDto() {
+    void _02_ShouldReturnDto_WhenCustomerIdExists() {
         when(repository.findById(1L)).thenReturn(Optional.of(customer));
         when(mapper.toDto(customer)).thenReturn(customerDto);
 
@@ -76,7 +76,7 @@ class CustomerServiceTest {
 
     @Test
     @DisplayName("getCustomerById - non-existing id throws ResourceNotFoundException")
-    void getCustomerById_notFound_throwsException() {
+    void _03_ShouldThrowResourceNotFound_WhenCustomerIdDoesNotExist() {
         when(repository.findById(99L)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> service.getCustomerById(99L))
@@ -86,7 +86,7 @@ class CustomerServiceTest {
 
     @Test
     @DisplayName("saveCustomer - maps and saves entity")
-    void saveCustomer_savesEntity() {
+    void _04_ShouldSaveEntity_WhenCustomerDtoIsMapped() {
         when(mapper.toEntity(customerDto)).thenReturn(customer);
 
         service.saveCustomer(customerDto);
@@ -96,7 +96,7 @@ class CustomerServiceTest {
 
     @Test
     @DisplayName("updateCustomer - existing id updates entity")
-    void updateCustomer_existingId_updatesEntity() {
+    void _05_ShouldUpdateEntity_WhenCustomerIdExists() {
         when(repository.findById(1L)).thenReturn(Optional.of(customer));
 
         service.updateCustomer(1L, customerDto);
@@ -107,7 +107,7 @@ class CustomerServiceTest {
 
     @Test
     @DisplayName("updateCustomer - non-existing id throws ResourceNotFoundException")
-    void updateCustomer_notFound_throwsException() {
+    void _06_ShouldThrowResourceNotFound_WhenUpdatedCustomerIdDoesNotExist() {
         when(repository.findById(99L)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> service.updateCustomer(99L, customerDto))
@@ -116,7 +116,7 @@ class CustomerServiceTest {
 
     @Test
     @DisplayName("deleteCustomer - existing id deletes entity")
-    void deleteCustomer_existingId_deletes() {
+    void _07_ShouldDeleteEntity_WhenCustomerIdExists() {
         when(repository.existsById(1L)).thenReturn(true);
 
         service.deleteCustomer(1L);
@@ -126,7 +126,7 @@ class CustomerServiceTest {
 
     @Test
     @DisplayName("deleteCustomer - non-existing id throws ResourceNotFoundException")
-    void deleteCustomer_notFound_throwsException() {
+    void _08_ShouldThrowResourceNotFound_WhenDeletedCustomerIdDoesNotExist() {
         when(repository.existsById(99L)).thenReturn(false);
 
         assertThatThrownBy(() -> service.deleteCustomer(99L))
