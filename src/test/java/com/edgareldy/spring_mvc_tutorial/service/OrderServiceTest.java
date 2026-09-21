@@ -67,7 +67,7 @@ class OrderServiceTest {
 
     @Test
     @DisplayName("getOrders - returns list of DTOs")
-    void getOrders_returnsDtoList() {
+    void _01_ShouldReturnDtoList_WhenOrdersAreRequested() {
         when(repository.findAll()).thenReturn(Arrays.asList(order));
         when(mapper.toDto(order)).thenReturn(orderDto);
 
@@ -79,7 +79,7 @@ class OrderServiceTest {
 
     @Test
     @DisplayName("getOrderById - existing id returns DTO")
-    void getOrderById_existingId_returnsDto() {
+    void _02_ShouldReturnDto_WhenOrderIdExists() {
         when(repository.findById(1L)).thenReturn(Optional.of(order));
         when(mapper.toDto(order)).thenReturn(orderDto);
 
@@ -90,7 +90,7 @@ class OrderServiceTest {
 
     @Test
     @DisplayName("getOrderById - non-existing id throws ResourceNotFoundException")
-    void getOrderById_notFound_throwsException() {
+    void _03_ShouldThrowResourceNotFound_WhenOrderIdDoesNotExist() {
         when(repository.findById(99L)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> service.getOrderById(99L))
@@ -100,7 +100,7 @@ class OrderServiceTest {
 
     @Test
     @DisplayName("saveOrder - resolves customer and product, saves entity")
-    void saveOrder_savesEntity() {
+    void _04_ShouldSaveEntity_WhenCustomerAndProductAreResolved() {
         when(customerRepository.findById(1L)).thenReturn(Optional.of(customer));
         when(productRepository.findById(1L)).thenReturn(Optional.of(product));
         when(mapper.toEntity(orderDto)).thenReturn(order);
@@ -114,7 +114,7 @@ class OrderServiceTest {
 
     @Test
     @DisplayName("saveOrder - non-existing customer throws ResourceNotFoundException")
-    void saveOrder_customerNotFound_throwsException() {
+    void _05_ShouldThrowResourceNotFound_WhenCustomerDoesNotExist() {
         when(customerRepository.findById(1L)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> service.saveOrder(orderDto))
@@ -124,7 +124,7 @@ class OrderServiceTest {
 
     @Test
     @DisplayName("updateOrder - existing id updates entity")
-    void updateOrder_existingId_updatesEntity() {
+    void _06_ShouldUpdateEntity_WhenOrderIdExists() {
         when(repository.findById(1L)).thenReturn(Optional.of(order));
         when(customerRepository.findById(1L)).thenReturn(Optional.of(customer));
         when(productRepository.findById(1L)).thenReturn(Optional.of(product));
@@ -137,7 +137,7 @@ class OrderServiceTest {
 
     @Test
     @DisplayName("updateOrder - non-existing id throws ResourceNotFoundException")
-    void updateOrder_notFound_throwsException() {
+    void _07_ShouldThrowResourceNotFound_WhenUpdatedOrderIdDoesNotExist() {
         when(repository.findById(99L)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> service.updateOrder(99L, orderDto))
@@ -146,7 +146,7 @@ class OrderServiceTest {
 
     @Test
     @DisplayName("deleteOrder - existing id deletes entity")
-    void deleteOrder_existingId_deletes() {
+    void _08_ShouldDeleteEntity_WhenOrderIdExists() {
         when(repository.existsById(1L)).thenReturn(true);
 
         service.deleteOrder(1L);
@@ -156,7 +156,7 @@ class OrderServiceTest {
 
     @Test
     @DisplayName("deleteOrder - non-existing id throws ResourceNotFoundException")
-    void deleteOrder_notFound_throwsException() {
+    void _09_ShouldThrowResourceNotFound_WhenDeletedOrderIdDoesNotExist() {
         when(repository.existsById(99L)).thenReturn(false);
 
         assertThatThrownBy(() -> service.deleteOrder(99L))

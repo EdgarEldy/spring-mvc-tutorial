@@ -71,7 +71,7 @@ class OrderControllerTest {
 
     @Test
     @DisplayName("GET /orders - returns index view with order list")
-    void getOrders_returnsIndexView() throws Exception {
+    void _01_ShouldReturnIndexView_WhenOrdersAreListed() throws Exception {
         when(orderService.getOrders()).thenReturn(Arrays.asList(orderDto()));
 
         mockMvc.perform(get("/orders"))
@@ -82,7 +82,7 @@ class OrderControllerTest {
 
     @Test
     @DisplayName("GET /orders/add - returns add view with dropdowns")
-    void getAddPage_returnsAddView() throws Exception {
+    void _02_ShouldReturnAddViewWithDropdowns_WhenAddPageIsRequested() throws Exception {
         when(customerService.getCustomers()).thenReturn(Arrays.asList(customerDto()));
         when(productService.getProducts()).thenReturn(Arrays.asList(productDto()));
 
@@ -94,7 +94,7 @@ class OrderControllerTest {
 
     @Test
     @DisplayName("POST /orders - valid DTO saves and redirects")
-    void postSave_validDto_redirects() throws Exception {
+    void _03_ShouldRedirect_WhenOrderDtoIsValid() throws Exception {
         mockMvc.perform(post("/orders")
                         .param("customerId", "1")
                         .param("productId", "1")
@@ -109,7 +109,7 @@ class OrderControllerTest {
 
     @Test
     @DisplayName("POST /orders - missing customerId returns add view with errors")
-    void postSave_missingCustomer_returnsAddViewWithErrors() throws Exception {
+    void _04_ShouldReturnAddViewWithErrors_WhenCustomerIdIsMissing() throws Exception {
         when(customerService.getCustomers()).thenReturn(Arrays.asList(customerDto()));
         when(productService.getProducts()).thenReturn(Arrays.asList(productDto()));
 
@@ -126,7 +126,7 @@ class OrderControllerTest {
 
     @Test
     @DisplayName("GET /orders/edit/{id} - returns edit view with populated DTO")
-    void getEditPage_returnsEditView() throws Exception {
+    void _05_ShouldReturnEditView_WhenOrderExists() throws Exception {
         when(orderService.getOrderById(1L)).thenReturn(orderDto());
         when(customerService.getCustomers()).thenReturn(Arrays.asList(customerDto()));
         when(productService.getProducts()).thenReturn(Arrays.asList(productDto()));
@@ -139,7 +139,7 @@ class OrderControllerTest {
 
     @Test
     @DisplayName("GET /orders/edit/{id} - not found returns 404 view")
-    void getEditPage_notFound_returns404() throws Exception {
+    void _06_ShouldReturn404_WhenOrderToEditIsNotFound() throws Exception {
         when(orderService.getOrderById(99L)).thenThrow(new ResourceNotFoundException("Order", 99L));
 
         mockMvc.perform(get("/orders/edit/99"))
@@ -149,7 +149,7 @@ class OrderControllerTest {
 
     @Test
     @DisplayName("POST /orders/edit/{id} - valid DTO updates and redirects")
-    void postUpdate_validDto_redirects() throws Exception {
+    void _07_ShouldRedirect_WhenUpdatedOrderDtoIsValid() throws Exception {
         mockMvc.perform(post("/orders/edit/1")
                         .param("customerId", "1")
                         .param("productId", "1")
@@ -163,7 +163,7 @@ class OrderControllerTest {
 
     @Test
     @DisplayName("POST /orders/delete/{id} - deletes and redirects")
-    void postDelete_redirects() throws Exception {
+    void _08_ShouldRedirect_WhenOrderIsDeleted() throws Exception {
         mockMvc.perform(post("/orders/delete/1"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/orders"))
