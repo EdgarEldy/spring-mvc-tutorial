@@ -40,7 +40,7 @@ class CustomerControllerTest {
 
     @Test
     @DisplayName("GET /customers - returns index view with customer list")
-    void getCustomers_returnsIndexView() throws Exception {
+    void _01_ShouldReturnIndexView_WhenCustomersAreListed() throws Exception {
         when(service.getCustomers()).thenReturn(Arrays.asList(customerDto()));
 
         mockMvc.perform(get("/customers"))
@@ -51,7 +51,7 @@ class CustomerControllerTest {
 
     @Test
     @DisplayName("GET /customers/add - returns add view with empty DTO")
-    void getAddPage_returnsAddView() throws Exception {
+    void _02_ShouldReturnAddView_WhenAddPageIsRequested() throws Exception {
         mockMvc.perform(get("/customers/add"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("customers/add"))
@@ -60,7 +60,7 @@ class CustomerControllerTest {
 
     @Test
     @DisplayName("POST /customers - valid DTO saves and redirects")
-    void postSave_validDto_redirects() throws Exception {
+    void _03_ShouldRedirect_WhenCustomerDtoIsValid() throws Exception {
         mockMvc.perform(post("/customers")
                         .param("firstName", "John")
                         .param("lastName", "Doe")
@@ -76,7 +76,7 @@ class CustomerControllerTest {
 
     @Test
     @DisplayName("POST /customers - blank firstName returns add view with errors")
-    void postSave_blankFirstName_returnsAddViewWithErrors() throws Exception {
+    void _04_ShouldReturnAddViewWithErrors_WhenFirstNameIsBlank() throws Exception {
         mockMvc.perform(post("/customers")
                         .param("firstName", "")
                         .param("lastName", "Doe")
@@ -92,7 +92,7 @@ class CustomerControllerTest {
 
     @Test
     @DisplayName("POST /customers - invalid email returns add view with errors")
-    void postSave_invalidEmail_returnsAddViewWithErrors() throws Exception {
+    void _05_ShouldReturnAddViewWithErrors_WhenEmailIsInvalid() throws Exception {
         mockMvc.perform(post("/customers")
                         .param("firstName", "John")
                         .param("lastName", "Doe")
@@ -108,7 +108,7 @@ class CustomerControllerTest {
 
     @Test
     @DisplayName("GET /customers/edit/{id} - returns edit view with populated DTO")
-    void getEditPage_returnsEditView() throws Exception {
+    void _06_ShouldReturnEditView_WhenCustomerExists() throws Exception {
         when(service.getCustomerById(1L)).thenReturn(customerDto());
 
         mockMvc.perform(get("/customers/edit/1"))
@@ -119,7 +119,7 @@ class CustomerControllerTest {
 
     @Test
     @DisplayName("GET /customers/edit/{id} - not found returns 404 view")
-    void getEditPage_notFound_returns404() throws Exception {
+    void _07_ShouldReturn404_WhenCustomerToEditIsNotFound() throws Exception {
         when(service.getCustomerById(99L)).thenThrow(new ResourceNotFoundException("Customer", 99L));
 
         mockMvc.perform(get("/customers/edit/99"))
@@ -129,7 +129,7 @@ class CustomerControllerTest {
 
     @Test
     @DisplayName("POST /customers/edit/{id} - valid DTO updates and redirects")
-    void postUpdate_validDto_redirects() throws Exception {
+    void _08_ShouldRedirect_WhenUpdatedCustomerDtoIsValid() throws Exception {
         mockMvc.perform(post("/customers/edit/1")
                         .param("firstName", "Jane")
                         .param("lastName", "Doe")
@@ -144,7 +144,7 @@ class CustomerControllerTest {
 
     @Test
     @DisplayName("POST /customers/delete/{id} - deletes and redirects")
-    void postDelete_redirects() throws Exception {
+    void _09_ShouldRedirect_WhenCustomerIsDeleted() throws Exception {
         mockMvc.perform(post("/customers/delete/1"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/customers"))
