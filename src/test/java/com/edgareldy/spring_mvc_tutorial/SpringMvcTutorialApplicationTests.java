@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class SpringMvcTutorialApplicationTests {
 
     @Test
-    void _01_ShouldLoadApplicationContext_WhenApplicationStarts() {
+    void contextLoads() {
     }
 
 }
